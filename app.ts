@@ -94,7 +94,7 @@ myMultiply = multiply;
 console.log(myMultiply(2, 3));
 
 //OBJECTS
-let userData = {
+let userData: { name: string; age: number } = {
   name: "Nick",
   age: 28
 };
@@ -104,3 +104,62 @@ let userData = {
 //    a: 'Hello'
 //    b: 28
 // }
+
+//complex objects
+let complex: { data: number[]; output: (all: boolean) => number[] } = {
+  data: [100, 3.99, 10],
+  output: function(all: boolean): number[] {
+    return this.data;
+  }
+};
+
+//Aliases
+type Complex = { data: number[]; output: (all: boolean) => number[] };
+
+let complex2: Complex = {
+  data: [100, 3.99, 10],
+  output: function(all: boolean): number[] {
+    return this.data;
+  }
+};
+
+let complex3: Complex = {
+  data: [200, 4.56, 10],
+  output: function(all: boolean): number[] {
+    return this.data;
+  }
+};
+
+// Union Types
+//When it could be one of a couple of different types. Cleaner type of any
+let myRealRealAge: number | string;
+//Both of these work
+myRealRealAge = "27";
+myRealRealAge = 28;
+//will throw error
+// myRealRealAge = true;
+
+//Check types
+let finalValue = 30;
+if (typeof finalValue == "number") {
+  console.log("final value is a number");
+}
+
+//2.0 types:
+
+//Never
+//Never returns anything not to be confused with void because void cannot have any output
+function neverReturns(): never {
+  throw new Error("An error!");
+}
+
+// nullable types
+let canBeNull: number | null = 12;
+canBeNull = null;
+let canAlsoBeNull;
+//this works beceause canAlsoBeNull was never set with a type
+canAlsoBeNull = null;
+
+let canThisBeAny = null;
+canThisBeAny = "any";
+canThisBeAny = 27;

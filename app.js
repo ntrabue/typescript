@@ -48,7 +48,91 @@ var car = "BMW";
 console.log(car); // returns string
 car = { brand: "BMW", series: 3 };
 console.log(car); // returns object
+//Adding type after function name should tell TSC what you're returning
 function returnMyName() {
     return myName;
+    //Will throw an error because this is a number
+    //return myAge;
 }
 console.log(returnMyName());
+//Void
+function sayHello() {
+    console.log("hello!");
+    //throws an error because nothing should be returned
+    // return myName;
+}
+function multiply(value1, value2) {
+    return value1 * value2;
+}
+//Will throw an error because 'max' is a string not a number
+// console.log(multiply(2, 'max'));
+console.log(multiply(2, 2));
+// let myMultiply;
+// myMultiply = sayHello;
+// myMultiply();
+// myMultiply = multiply;
+// console.log(myMultiply(5, 2));
+var myMultiply;
+//Will throw error because say hello isn't a function that takes arguments nor does it return anything
+// myMultiply = sayHello;
+myMultiply = multiply;
+//Will throw an error because 'max' is a string and not a number
+// console.log(myMultiply('max', 2));
+console.log(myMultiply(2, 3));
+//OBJECTS
+var userData = {
+    name: "Nick",
+    age: 28
+};
+//Will fail because object keys should match
+// userData = {
+//    a: 'Hello'
+//    b: 28
+// }
+//complex objects
+var complex = {
+    data: [100, 3.99, 10],
+    output: function (all) {
+        return this.data;
+    }
+};
+var complex2 = {
+    data: [100, 3.99, 10],
+    output: function (all) {
+        return this.data;
+    }
+};
+var complex3 = {
+    data: [200, 4.56, 10],
+    output: function (all) {
+        return this.data;
+    }
+};
+// Union Types
+//When it could be one of a couple of different types. Cleaner type of any
+var myRealRealAge;
+//Both of these work
+myRealRealAge = "27";
+myRealRealAge = 28;
+//will throw error
+// myRealRealAge = true;
+//Check types
+var finalValue = 30;
+if (typeof finalValue == "number") {
+    console.log("final value is a number");
+}
+//2.0 types:
+//Never
+//Never returns anything not to be confused with void because void cannot have any output
+function neverReturns() {
+    throw new Error("An error!");
+}
+// nullable types
+var canBeNull = 12;
+canBeNull = null;
+var canAlsoBeNull;
+//this works beceause canAlsoBeNull was never set with a type
+canAlsoBeNull = null;
+var canThisBeAny = null;
+canThisBeAny = "any";
+canThisBeAny = 27;
